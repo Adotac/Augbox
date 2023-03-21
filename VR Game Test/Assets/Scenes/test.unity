@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Camera: {fileID: 1320218775}
   m_OriginBaseGameObject: {fileID: 333248135}
   m_CameraFloorOffsetObject: {fileID: 1784530893}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 2
   m_CameraYOffset: 1.1176
 --- !u!4 &333248138
 Transform:
@@ -900,12 +900,12 @@ MonoBehaviour:
       m_Name: Position
       m_Type: 0
       m_ExpectedControlType: Vector3
-      m_Id: 
+      m_Id: 55cc5887-490c-4c10-9d3e-a8bf69bd5056
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: 
+        m_Id: f99bb569-fa69-4bfc-8899-f349019ced94
         m_Path: <XRHMD>/centerEyePosition
         m_Interactions: 
         m_Processors: 
@@ -920,12 +920,12 @@ MonoBehaviour:
       m_Name: Rotation
       m_Type: 0
       m_ExpectedControlType: Quaternion
-      m_Id: 
+      m_Id: 4d51b9e2-ac9d-4609-b42b-3a94e5edb929
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: 
+        m_Id: 3ff604bb-3002-447e-9a62-649cda5074bb
         m_Path: <XRHMD>/centerEyeRotation
         m_Interactions: 
         m_Processors: 
