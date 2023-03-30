@@ -11,7 +11,6 @@ public class VRmap{
 
     public void Map(){
         rigtarget.position = vrtarget.TransformPoint(trackingPositionOffset);
-        
         rigtarget.rotation = vrtarget.rotation * Quaternion.Euler(trackingRotationOffset);
     }
 
@@ -20,23 +19,31 @@ public class VRmap{
 public class VRrig : MonoBehaviour
 {
     public VRmap Head;
+    public int turnSmooth = 1;
+
     public VRmap HandL;
     public VRmap HandR;
     public Transform headConstraint;
     public Vector3 headBodyOffset;
 
-    // Start is called before the first frame update
     void Start()
     {
         headBodyOffset = transform.position - headConstraint.position;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         transform.position = headConstraint.position + headBodyOffset;
+
         transform.forward = Vector3.ProjectOnPlane(headConstraint.up, Vector3.up).normalized;
-    
+
+        // transform.forward = Vector3.Lerp(
+        //                         transform.forward,
+        //                         Vector3.ProjectOnPlane(headConstraint.up, Vector3.up).normalized, 
+        //                         Time.deltaTime * turnSmooth
+        //                     );
+
+        
         Head.Map();
         HandR.Map();
         HandL.Map();
