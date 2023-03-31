@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other.name);
+        Debug.Log(other.name);
         if (other.gameObject.CompareTag("Player"))
         {
             
@@ -19,7 +19,7 @@ public class Hand : MonoBehaviour
             {
                 Player enemyHealth = other.gameObject.GetComponent<Player>();
 
-                if (enemyHealth.Health < 0)
+                if (enemyHealth.Health > 0)
                 {
                     enemyHealth.Health = enemyHealth.Health - controlledPlayer.Damage;
                     //enemyHealth.refBar.UpdateValue();
