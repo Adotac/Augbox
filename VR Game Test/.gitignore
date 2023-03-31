@@ -102,6 +102,8 @@ sysinfo.txt
 *.unitypackage
 *.app
 
+Assets/MRTK.Tutorials.GettingStarted
+
 # Crashlytics generated file
 crashlytics-build.properties
 
