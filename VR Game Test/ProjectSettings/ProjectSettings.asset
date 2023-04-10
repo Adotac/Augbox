@@ -645,7 +645,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Android: ARFOUNDATION_PRESENT
-    Windows Store Apps: DOTNETWINRT_PRESENT
+    Windows Store Apps: DOTNETWINRT_PRESENT;FISHNET;FISHNET_V3
     iPhone: ARFOUNDATION_PRESENT
   additionalCompilerArguments: {}
   platformArchitecture:

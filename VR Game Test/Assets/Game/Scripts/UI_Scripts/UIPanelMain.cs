@@ -28,9 +28,15 @@ namespace Augbox
         [SerializeField]
         private Button buttonJoin;
 
+        [Tooltip("Button for playing single mode")]
+        [SerializeField]
+        private Button buttonSingle;
+
         [Tooltip("Button for adjusting settings")]
         [SerializeField]
         private Button buttonSettings;
+
+        
 
         private void Start()
         {
@@ -50,11 +56,6 @@ namespace Augbox
         private void OnDestroy()
         {
 
-        }
-
-        private void Vivox_OnAuthenticated()
-        {
-            UpdateControlState();
         }
 
         private IEnumerator ConnectToEOS()
@@ -149,6 +150,9 @@ namespace Augbox
             StartCoroutine(DoJoinGame());
         }
 
+        public void SinglePlayerGame(){
+            // change to other scene
+        }
         public void ShowSettings()
         {
             UIPanelManager.Instance.ShowPanel<UIPanelMenuSettings>();
