@@ -644,7 +644,9 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Windows Store Apps: DOTNETWINRT_PRESENT
+    Android: ARFOUNDATION_PRESENT
+    Windows Store Apps: DOTNETWINRT_PRESENT;FISHNET;FISHNET_V3
+    iPhone: ARFOUNDATION_PRESENT
   additionalCompilerArguments: {}
   platformArchitecture:
     iPhone: 1
@@ -731,7 +733,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 1
+    Collab: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -746,11 +754,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 614ace6b-dd30-4bbc-9078-fbb22d0c8642
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: AR Augbox
+  organizationId: adotac_stust
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
