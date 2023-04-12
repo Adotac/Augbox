@@ -217,17 +217,17 @@ MonoBehaviour:
     rigtarget: {fileID: 1693913972}
     trackingPositionOffset: {x: 0, y: 0, z: 0}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
-  turnSmooth: 1
+  turnSmooth: 0
   HandL:
-    vrtarget: {fileID: 0}
+    vrtarget: {fileID: 1249371585}
     rigtarget: {fileID: 1298132739}
     trackingPositionOffset: {x: 0, y: 0, z: 0}
-    trackingRotationOffset: {x: 70, y: 0, z: 0}
+    trackingRotationOffset: {x: 0, y: 0, z: 0}
   HandR:
-    vrtarget: {fileID: 0}
+    vrtarget: {fileID: 1407349879}
     rigtarget: {fileID: 932290094}
     trackingPositionOffset: {x: 0, y: 0, z: 0}
-    trackingRotationOffset: {x: 70, y: 0, z: 0}
+    trackingRotationOffset: {x: 0, y: 0, z: 0}
   headConstraint: {fileID: 1693913972}
   headBodyOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &106720322
@@ -338,7 +338,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106720319}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -499,11 +499,13 @@ MonoBehaviour:
   L_middleObj: {fileID: 1363116975}
   L_indexObj: {fileID: 1397402492}
   L_thumbObj: {fileID: 1408747472}
+  L_Hand: {fileID: 1423439619}
   R_pinkyObj: {fileID: 908497004}
   R_ringObj: {fileID: 1632373532}
   R_middleObj: {fileID: 1738380}
   R_indexObj: {fileID: 1448476764}
   R_thumbObj: {fileID: 2125874119}
+  R_Hand: {fileID: 1423439618}
   trackingPositionOffset: {x: 0, y: 0, z: 0}
   trackingRotationOffset: {x: 0, y: 0, z: 0}
 --- !u!4 &603688152
@@ -1270,6 +1272,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d3f9198eab65134c9752cd6798793a0, type: 3}
+--- !u!1 &1423439618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2807231755144388993, guid: 6d3f9198eab65134c9752cd6798793a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1423439617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1423439619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2972324554277783046, guid: 6d3f9198eab65134c9752cd6798793a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1423439617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1440909392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4425252173966862258, guid: 6d3f9198eab65134c9752cd6798793a0,
