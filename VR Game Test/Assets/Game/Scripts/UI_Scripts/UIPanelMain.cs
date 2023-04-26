@@ -11,6 +11,8 @@ using System.Linq;
 using FishNet.Transporting.FishyEOSPlugin;
 using FishNet;
 
+using UnityEngine.SceneManagement;
+
 namespace Augbox
 {
     public class UIPanelMain : UIPanel<UIPanelMain>, IUIPanel
@@ -152,6 +154,8 @@ namespace Augbox
 
         public void SinglePlayerGame(){
             // change to other scene
+            Debug.Log("Changing scene to single player mode.");
+            SceneManager.LoadScene("Scene_SinglePlayer", LoadSceneMode.Single);
         }
         public void ShowSettings()
         {

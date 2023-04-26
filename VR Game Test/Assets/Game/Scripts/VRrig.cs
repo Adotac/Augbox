@@ -45,7 +45,8 @@ public class VRrig : MonoBehaviour
 
         
         Head.Map();
-        HandR.Map();
-        HandL.Map();
+
+        if(HandR != null) HandR.Map();
+        if(HandL != null) HandL.Map();
     }
 }
