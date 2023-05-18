@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Mediapipe.Unity.CoordinateSystem;
 
+using Mediapipe;
+using Mediapipe.Unity;
+using Mediapipe.Unity.CoordinateSystem;
 using Stopwatch = System.Diagnostics.Stopwatch;
 
-namespace Mediapipe.Unity.Tutorial
+namespace Augbox
 {
-    public class FaceMesh : MonoBehaviour
+    public class HandTracking : MonoBehaviour
     {
         [SerializeField] private TextAsset _configAsset;
         [SerializeField] private RawImage _screen;
@@ -24,6 +26,7 @@ namespace Mediapipe.Unity.Tutorial
         private Color32[] _inputPixelData;
         private Texture2D _outputTexture;
         private Color32[] _outputPixelData;
+
 
         private IEnumerator Start()
         {
@@ -55,6 +58,7 @@ namespace Mediapipe.Unity.Tutorial
             _graph = new CalculatorGraph(_configAsset.text);
             var outputVideoStream = new OutputStream<ImageFramePacket, ImageFrame>(_graph, "output_video");
             var multiFaceLandmarksStream = new OutputStream<NormalizedLandmarkListVectorPacket, List<NormalizedLandmarkList>>(_graph, "multi_face_landmarks");
+
             outputVideoStream.StartPolling().AssertOk();
             multiFaceLandmarksStream.StartPolling().AssertOk();
             _graph.StartRun().AssertOk();

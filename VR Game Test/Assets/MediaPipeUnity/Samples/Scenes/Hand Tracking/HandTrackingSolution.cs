@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Mediapipe.Unity.HandTracking
 {
   public class HandTrackingSolution : ImageSourceSolution<HandTrackingGraph>
@@ -88,10 +89,15 @@ namespace Mediapipe.Unity.HandTracking
       _handLandmarksAnnotationController.DrawNow(handLandmarks, handedness);
       // TODO: render HandWorldLandmarks annotations
       _handRectsFromLandmarksAnnotationController.DrawNow(handRectsFromLandmarks);
+
+      // print(handLandmarks);
+
+      
     }
 
     private void OnPalmDetectionsOutput(object stream, OutputEventArgs<List<Detection>> eventArgs)
     {
+      
       _palmDetectionsAnnotationController.DrawLater(eventArgs.value);
     }
 
@@ -103,6 +109,11 @@ namespace Mediapipe.Unity.HandTracking
     private void OnHandLandmarksOutput(object stream, OutputEventArgs<List<NormalizedLandmarkList>> eventArgs)
     {
       _handLandmarksAnnotationController.DrawLater(eventArgs.value);
+      //print(eventArgs.value.Count);
+      // foreach(var x in eventArgs.value){
+      //   print(x);
+      // }
+
     }
 
     private void OnHandRectsFromLandmarksOutput(object stream, OutputEventArgs<List<NormalizedRect>> eventArgs)
@@ -114,5 +125,6 @@ namespace Mediapipe.Unity.HandTracking
     {
       _handLandmarksAnnotationController.DrawLater(eventArgs.value);
     }
+
   }
 }
