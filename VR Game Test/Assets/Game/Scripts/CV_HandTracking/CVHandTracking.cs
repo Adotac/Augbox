@@ -28,16 +28,6 @@ namespace Augbox{
             data1 = data1.Remove(data1.Length-1, 1);
             string[] points1 = data1.Split(',');
 
-            // data2 = data2.Remove(0, 1);
-            // data2 = data2.Remove(data2.Length-1, 1);
-            // string[] points2 = data2.Split(',');
-
-            // print(points1);
-            //0        1*BYTESKIP      2*BYTESKIP
-            //x1,y1,z1,x2,y2,z2,x3,y3,z3
-
-            // print(typ);
-            string typ = points1[0];
             float x1 = 7-float.Parse(points1[0 * BYTESKIP + 1])/100;
             float y1 = float.Parse(points1[0 * BYTESKIP + 2]) / 100;
             float z1 = float.Parse(points1[0 * BYTESKIP + 3]) / 100;
@@ -50,64 +40,38 @@ namespace Augbox{
             frameArea = rectArea(w1, h1)/1000;
             int bbArea1 = rectArea(bbx1, bby1)/1000;
 
-            // print(typ);
-            // print(((string)(points1[0 * BYTESKIP])).CompareTo("'Left'") == 0);
-            if(typ.CompareTo("'Left'") == 0){
-                print("left");
+            if(points1[0].CompareTo("'Left'") == 0){
                 handPoints1.transform.localPosition = new Vector3(x1, y1, z1 + ((frameArea-bbArea1)/zOffset) );
-            
-
-                if (points1.Length > BYTESKIP && ((string)(points1[1 * BYTESKIP])).CompareTo("'Left'") == 0){
-
+                if (points1.Length > BYTESKIP){
                     float x2 = 7-float.Parse(points1[1 * BYTESKIP + 1])/100;
                     float y2 = float.Parse(points1[1 * BYTESKIP + 2]) / 100;
                     float z2 = float.Parse(points1[1 * BYTESKIP + 3]) / 100;
 
-                    // int w2 = int.Parse(points1[1 * BYTESKIP + 4]);
-                    // int h2 = int.Parse(points1[1 * BYTESKIP + 5]);
                     int bbx2 = int.Parse(points1[1 * BYTESKIP + 6]);
                     int bby2 = int.Parse(points1[1 * BYTESKIP + 7]);
 
                     int bbArea2 = rectArea(bbx2, bby2)/1000;
                     handPoints2.transform.localPosition = new Vector3(x2, y2, z2 + ((frameArea-bbArea2)/zOffset) );
-
-
                 }
             }
-            
-            else if(typ.CompareTo("'Right'") == 0){
-                print("right");
-
+            else if(points1[0].CompareTo("'Right'") == 0){
                 handPoints2.transform.localPosition = new Vector3(x1, y1, z1 + ((frameArea-bbArea1)/zOffset) );
-            
-
-                if (points1.Length > BYTESKIP && ((string)(points1[1 * BYTESKIP])).CompareTo("'Left'")==0){
-
+                if (points1.Length > BYTESKIP){
                     float x2 = 7-float.Parse(points1[1 * BYTESKIP + 1])/100;
                     float y2 = float.Parse(points1[1 * BYTESKIP + 2]) / 100;
                     float z2 = float.Parse(points1[1 * BYTESKIP + 3]) / 100;
 
-                    // int w2 = int.Parse(points1[1 * BYTESKIP + 4]);
-                    // int h2 = int.Parse(points1[1 * BYTESKIP + 5]);
                     int bbx2 = int.Parse(points1[1 * BYTESKIP + 6]);
                     int bby2 = int.Parse(points1[1 * BYTESKIP + 7]);
 
                     int bbArea2 = rectArea(bbx2, bby2)/1000;
                     handPoints1.transform.localPosition = new Vector3(x2, y2, z2 + ((frameArea-bbArea2)/zOffset));
-
-
                 }
             }
-
-            // float x2 = 7-float.Parse(points2[0 * BYTESKIP])/100;
-            // float y2 = float.Parse(points2[0 * BYTESKIP + 1]) / 100;
-            // float z2 = float.Parse(points2[0 * BYTESKIP + 2]) / 100;
         }
 
         private int rectArea(int w, int h){
             return w*h;
         }
-
-
     }
 }

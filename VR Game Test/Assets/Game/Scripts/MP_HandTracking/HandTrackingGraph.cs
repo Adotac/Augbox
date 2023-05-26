@@ -11,7 +11,11 @@ using UnityEngine;
 
 using Google.Protobuf;
 
-namespace Mediapipe.Unity.HandTracking
+using Mediapipe;
+using Mediapipe.Unity;
+// using Mediapipe.Unity.HandTracking;
+
+namespace Augbox
 {
   public class HandTrackingGraph : GraphRunner
   {

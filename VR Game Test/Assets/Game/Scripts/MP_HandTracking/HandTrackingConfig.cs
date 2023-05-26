@@ -8,9 +8,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+using Mediapipe.Unity;
 using Mediapipe.Unity.UI;
 
-namespace Mediapipe.Unity.HandTracking
+namespace Augbox
 {
   public class HandTrackingConfig : ModalContents
   {
@@ -77,7 +79,7 @@ namespace Mediapipe.Unity.HandTracking
 
     public void SwitchRunningMode()
     {
-      _solution.runningMode = (Mediapipe.Unity.RunningMode)_runningModeInput.value;
+      _solution.runningMode = (RunningMode)_runningModeInput.value;
       _isChanged = true;
     }
 
@@ -145,7 +147,7 @@ namespace Mediapipe.Unity.HandTracking
       _runningModeInput = gameObject.transform.Find(_RunningModePath).gameObject.GetComponent<Dropdown>();
       _runningModeInput.ClearOptions();
 
-      var options = new List<string>(Enum.GetNames(typeof(Mediapipe.Unity.RunningMode)));
+      var options = new List<string>(Enum.GetNames(typeof(RunningMode)));
       _runningModeInput.AddOptions(options);
 
       var currentRunningMode = _solution.runningMode;
