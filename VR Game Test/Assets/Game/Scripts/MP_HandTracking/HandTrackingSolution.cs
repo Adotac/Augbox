@@ -4,6 +4,7 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,15 +16,10 @@ namespace Augbox
 {
   public class HandTrackingSolution : ImageSourceSolution<HandTrackingGraph>
   {
-    [SerializeField]public GameObject Hand1;
-    [SerializeField]public GameObject Hand2;
-
     [SerializeField] private DetectionListAnnotationController _palmDetectionsAnnotationController;
     [SerializeField] private NormalizedRectListAnnotationController _handRectsFromPalmDetectionsAnnotationController;
     [SerializeField] private MultiHandLandmarkListAnnotationController _handLandmarksAnnotationController;
     [SerializeField] private NormalizedRectListAnnotationController _handRectsFromLandmarksAnnotationController;
-
-    private List<NormalizedLandmarkList> hloutput;
 
     public HandTrackingGraph.ModelComplexity modelComplexity
     {
@@ -49,44 +45,23 @@ namespace Augbox
       set => graphRunner.minTrackingConfidence = value;
     }
 
+    public event EventHandler<OnHandLandmarkPosEventArgs> OnHandLandmarkPos;
+    public class OnHandLandmarkPosEventArgs : EventArgs{
+      public List<NormalizedLandmarkList> hand_landmark_pos;
+      public List<ClassificationList> handedness;
+    } 
+    private List<NormalizedLandmarkList> hloutput;
+    private List<ClassificationList> handedness_output;
+
+
     private void Update() {
-      // print(hloutput[0].Landmark);
-
-      if(hloutput != null){
-        if( hloutput[0] != null){
-          float x1 = hloutput[0].Landmark[5].X;
-          float y1 =  hloutput[0].Landmark[5].Y; 
-          float x2 = hloutput[0].Landmark[17].X;
-          float y2 =  hloutput[0].Landmark[17].Y; 
-          
-          Hand1.transform.localPosition = new Vector3(hloutput[0].Landmark[0].X, hloutput[0].Landmark[0].Y, hloutput[0].Landmark[0].Z-zDepth(CalculateDistance(x1, y1, x2, y2)));
-          print(zDepth(CalculateDistance(x1, y1, x2, y2)));
-        }
-        if(hloutput.Count > 1 && hloutput[1] != null){
-          float x1 = hloutput[1].Landmark[5].X;
-          float y1 =  hloutput[1].Landmark[5].Y; 
-          float x2 = hloutput[1].Landmark[17].X;
-          float y2 =  hloutput[1].Landmark[17].Y; 
-           Hand2.transform.localPosition = new Vector3(hloutput[1].Landmark[0].X, hloutput[1].Landmark[0].Y, hloutput[1].Landmark[0].Z-zDepth(CalculateDistance(x1, y1, x2, y2)));
-        }
-      }
-
+      if(hloutput != null)
+        OnHandLandmarkPos?.Invoke(this, new OnHandLandmarkPosEventArgs{ 
+          hand_landmark_pos = hloutput,
+          handedness = handedness_output
+          } );
     }
 
-    static float CalculateDistance(float x1, float y1, float x2, float y2)
-    {
-        float distance = Mathf.Sqrt(Mathf.Pow(x2 - x1, 2) + Mathf.Pow(y2 - y1, 2));
-        return distance;
-    }
-    private float zDepth(float z){
-      float temp1 = 0.1f;
-      float tempwidth = 3;
-      float focal = (tempwidth * temp1) / 3; // manual cam calibration
-      return distanceToCamera(3, focal, z);
-    }
-    private float distanceToCamera(float knownWidth, float focalLength, float perWidth){
-      return (knownWidth * focalLength) / perWidth;
-    }
 
     protected override void OnStartRun()
     {
@@ -177,6 +152,9 @@ namespace Augbox
     private void OnHandednessOutput(object stream, OutputEventArgs<List<ClassificationList>> eventArgs)
     {
       _handLandmarksAnnotationController.DrawLater(eventArgs.value);
+      if(eventArgs.value != null){
+        handedness_output = eventArgs.value;
+      }
     }
 
   }
