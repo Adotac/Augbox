@@ -221,7 +221,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &109537795
@@ -1408,7 +1408,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951453433}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1945,6 +1945,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -2530251679569251172, guid: 6d3f9198eab65134c9752cd6798793a0,
     type: 3}
   m_PrefabInstance: {fileID: 736465093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1275922804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7036176166943618107, guid: 81718414feff8354a9198710857ebbae,
+    type: 3}
+  m_PrefabInstance: {fileID: 8233366136534458910}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1287974412
 GameObject:
@@ -3191,6 +3197,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 736465093}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623616151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3567543545041393169, guid: 81718414feff8354a9198710857ebbae,
+    type: 3}
+  m_PrefabInstance: {fileID: 8233366136534458910}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1638593318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3081276882277234344, guid: 6d3f9198eab65134c9752cd6798793a0,
@@ -3228,6 +3240,103 @@ Transform:
   m_Father: {fileID: 981205244}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1647930240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1647930241}
+  - component: {fileID: 1647930243}
+  - component: {fileID: 1647930242}
+  m_Layer: 0
+  m_Name: NetworkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1647930241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647930240}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1647930242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647930240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ProtocolType: 0
+  m_MaxPacketQueueSize: 128
+  m_MaxPayloadSize: 6144
+  m_HeartbeatTimeoutMS: 500
+  m_ConnectTimeoutMS: 1000
+  m_MaxConnectAttempts: 60
+  m_DisconnectTimeoutMS: 30000
+  ConnectionData:
+    Address: 127.0.0.1
+    Port: 7777
+    ServerListenAddress: 127.0.0.1
+  DebugSimulator:
+    PacketDelayMS: 0
+    PacketJitterMS: 0
+    PacketDropRate: 0
+--- !u!114 &1647930243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647930240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593a2fe42fa9d37498c96f9a383b6521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RunInBackground: 1
+  LogLevel: 1
+  NetworkConfig:
+    ProtocolVersion: 0
+    NetworkTransport: {fileID: 1647930242}
+    PlayerPrefab: {fileID: 0}
+    Prefabs:
+      NetworkPrefabsLists:
+      - {fileID: 11400000, guid: e0c1b81cc3eda194f8a4b00f65cb09c9, type: 2}
+    TickRate: 30
+    ClientConnectionBufferTimeout: 10
+    ConnectionApproval: 0
+    ConnectionData: 
+    EnableTimeResync: 0
+    TimeResyncInterval: 30
+    EnsureNetworkVariableLengthSafety: 0
+    EnableSceneManagement: 1
+    ForceSamePrefabs: 1
+    RecycleNetworkIds: 1
+    NetworkIdRecycleDelay: 120
+    RpcHashSize: 0
+    LoadSceneTimeOut: 120
+    SpawnTimeout: 1
+    EnableNetworkLogs: 1
+    OldPrefabList: []
 --- !u!4 &1673227537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1680883931492820501, guid: 6d3f9198eab65134c9752cd6798793a0,
@@ -4361,6 +4470,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8233366137237061007, guid: 81718414feff8354a9198710857ebbae,
+        type: 3}
+      propertyPath: LeftHand
+      value: 
+      objectReference: {fileID: 1623616151}
+    - target: {fileID: 8233366137237061007, guid: 81718414feff8354a9198710857ebbae,
+        type: 3}
+      propertyPath: RightHand
+      value: 
+      objectReference: {fileID: 1275922804}
     - target: {fileID: 8233366138074584576, guid: 81718414feff8354a9198710857ebbae,
         type: 3}
       propertyPath: m_RootOrder

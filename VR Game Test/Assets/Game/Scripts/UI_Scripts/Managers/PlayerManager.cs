@@ -12,7 +12,7 @@ namespace Augbox
         private List<Player> _players = new List<Player>();
 
         // EOS lobby id we are currently in
-        public string ActiveLobbyId { get; set; } = "testing";
+        public string ActiveLobbyId { get; set; } = "Experimental Lobby";
 
         // triggered when ever any changes are done to the players
         public event Action PlayersChanged;

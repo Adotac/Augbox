@@ -122,6 +122,13 @@ namespace Augbox
             }
         }
 
+        public override void OnStopNetwork()
+        {
+            base.OnStopNetwork();
+
+            PlayerManager.Instance?.RemovePlayer(UserId);
+        }
+
         
 
         [Client]
@@ -160,13 +167,6 @@ namespace Augbox
             GameObject pawnInstance = Instantiate(pawnPrefab);
 
             Spawn(pawnInstance, Owner); //assign the instance to the owner
-        }
-
-                public override void OnStopNetwork()
-        {
-            base.OnStopNetwork();
-
-            PlayerManager.Instance?.RemovePlayer(UserId);
         }
 
         [ServerRpc]

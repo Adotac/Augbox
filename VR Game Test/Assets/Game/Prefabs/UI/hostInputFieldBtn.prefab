@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3990384338970188846}
   - component: {fileID: 3990384338970188847}
   - component: {fileID: 3990384338970188844}
-  - component: {fileID: 3990384338970188817}
   - component: {fileID: 5627983930742728949}
   m_Layer: 5
   m_Name: hostInputFieldBtn
@@ -124,7 +123,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3990384338970188817}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ConsoleInputField, Assembly-CSharp
         m_MethodName: InputFieldOnClick
         m_Mode: 1
@@ -136,20 +135,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3990384338970188817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3990384338970188842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf8bf3ee2656fe4e8492ab328e42ef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InputFieldButton: {fileID: 3990384338970188844}
-  InputField: {fileID: 3990384339255905910}
 --- !u!114 &5627983930742728949
 MonoBehaviour:
   m_ObjectHideFlags: 0

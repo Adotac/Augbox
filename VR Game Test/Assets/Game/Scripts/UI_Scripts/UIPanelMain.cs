@@ -82,7 +82,7 @@ namespace Augbox
         }
 
         private void UpdateControlState()
-        {
+        { 
             inputFieldPlayerName.text = GameSettings.Instance.CurrentPlayerName;
 
             // only allow host/join if all logged in ok
@@ -155,7 +155,14 @@ namespace Augbox
         public void SinglePlayerGame(){
             // change to other scene
             Debug.Log("Changing scene to single player mode.");
-            SceneManager.LoadScene("Scene_SinglePlayer", LoadSceneMode.Single);
+
+            if(GetComponent<WebcamDetection>().isCamDeviceAvailable()){
+                SceneManager.LoadScene("Scene_SinglePlayer", LoadSceneMode.Single);
+            }
+            else
+                Debug.Log("No camera available!");
+
+
         }
         public void ShowSettings()
         {

@@ -159,7 +159,6 @@ GameObject:
   - component: {fileID: 4956287263682151080}
   - component: {fileID: 4956287263682151081}
   - component: {fileID: 4956287263682151082}
-  - component: {fileID: 4956287263682151063}
   - component: {fileID: 1315968175579300929}
   m_Layer: 5
   m_Name: usernameInputFieldBtn
@@ -271,7 +270,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4956287263682151063}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ConsoleInputField, Assembly-CSharp
         m_MethodName: InputFieldOnClick
         m_Mode: 1
@@ -283,20 +282,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4956287263682151063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4956287263682151084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf8bf3ee2656fe4e8492ab328e42ef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InputFieldButton: {fileID: 4956287263682151082}
-  InputField: {fileID: 4956287262928769264}
 --- !u!114 &1315968175579300929
 MonoBehaviour:
   m_ObjectHideFlags: 0
