@@ -1,5 +1,4 @@
-using FishNet.Plugins.FishyEOS.Util;
-using PlayEveryWare.EpicOnlineServices;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +12,6 @@ namespace Augbox
         {
             // get the settings
             GameSettings.Instance.Load();
-
-            // this inits as well as gets
-            if (EOS.GetManager() == null)
-            {
-                Debug.LogError("Failed to find EOSManager.");
-            }
         }
 
         private void Start()

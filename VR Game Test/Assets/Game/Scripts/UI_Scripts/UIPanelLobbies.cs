@@ -1,161 +1,156 @@
-using Epic.OnlineServices;
-using Epic.OnlineServices.Lobby;
-using FishNet;
-using FishNet.Managing;
-using FishNet.Plugins.FishyEOS.Util;
-using FishNet.Transporting.FishyEOSPlugin;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
 
-namespace Augbox
-{
-    public class UIPanelLobbies : UIPanel<UIPanelLobbies>, IUIPanel
-    {
-        [Tooltip("Controller for list of lobbies")]
-        [SerializeField]
-        private UIScrollViewLobbies lobbies;
+// using System;
+// using System.Collections;
+// using System.Collections.Generic;
+// using System.Linq;
+// using UnityEngine;
+// using UnityEngine.UI;
 
-        [SerializeField]
-        private RectTransform busyRectComponent;
+// namespace Augbox
+// {
+//     public class UIPanelLobbies : UIPanel<UIPanelLobbies>, IUIPanel
+//     {
+//         [Tooltip("Controller for list of lobbies")]
+//         [SerializeField]
+//         private UIScrollViewLobbies lobbies;
 
-        [SerializeField]
-        private GameObject panelBusy;
+//         [SerializeField]
+//         private RectTransform busyRectComponent;
 
-        [SerializeField]
-        private float busyRotateSpeed = 200f;
+//         [SerializeField]
+//         private GameObject panelBusy;
 
-        private void Update()
-        {
-            busyRectComponent.Rotate(0f, 0f, -busyRotateSpeed * Time.deltaTime);
-        }
+//         [SerializeField]
+//         private float busyRotateSpeed = 200f;
 
-        public void Back()
-        {
-            UIPanelManager.Instance.HidePanel<UIPanelLobbies>(false);
-        }
+//         private void Update()
+//         {
+//             busyRectComponent.Rotate(0f, 0f, -busyRotateSpeed * Time.deltaTime);
+//         }
 
-        private void SetLobbyBusy(bool status)
-        {
-            panelBusy.SetActive(status);
-        }
+//         public void Back()
+//         {
+//             UIPanelManager.Instance.HidePanel<UIPanelLobbies>(false);
+//         }
 
-        private void DoSearch()
-        {
-            lobbies.ClearLobbies();
+//         private void SetLobbyBusy(bool status)
+//         {
+//             panelBusy.SetActive(status);
+//         }
 
-            var search = new LobbySearch();
-            var searchOptions = new CreateLobbySearchOptions { MaxResults = 50 };
+//         private void DoSearch()
+//         {
+//             lobbies.ClearLobbies();
 
-            EOS.GetCachedLobbyInterface().CreateLobbySearch(ref searchOptions, out search);
+//             var search = new LobbySearch();
+//             var searchOptions = new CreateLobbySearchOptions { MaxResults = 50 };
 
-            var lobbySearchSetParameterOptions = new LobbySearchSetParameterOptions { ComparisonOp = ComparisonOp.Equal, Parameter = new AttributeData { Key = "bucket", Value = GameConstants.AllLobbiesBucketId } };
+//             EOS.GetCachedLobbyInterface().CreateLobbySearch(ref searchOptions, out search);
 
-            search.SetParameter(ref lobbySearchSetParameterOptions);
+//             var lobbySearchSetParameterOptions = new LobbySearchSetParameterOptions { ComparisonOp = ComparisonOp.Equal, Parameter = new AttributeData { Key = "bucket", Value = GameConstants.AllLobbiesBucketId } };
 
-            var lobbySearchFindOptions = new LobbySearchFindOptions { LocalUserId = EOS.LocalProductUserId };
+//             search.SetParameter(ref lobbySearchSetParameterOptions);
 
-            SetLobbyBusy(true);
+//             var lobbySearchFindOptions = new LobbySearchFindOptions { LocalUserId = EOS.LocalProductUserId };
 
-            search.Find(ref lobbySearchFindOptions, null, delegate (ref LobbySearchFindCallbackInfo data)
-            {
-                SetLobbyBusy(false);
+//             SetLobbyBusy(true);
 
-                if (data.ResultCode == Result.Success)
-                {
-                    Debug.Log("Lobbies search finished.");
+//             search.Find(ref lobbySearchFindOptions, null, delegate (ref LobbySearchFindCallbackInfo data)
+//             {
+//                 SetLobbyBusy(false);
 
-                    var lobbySearchGetSearchResultCountOptions = new LobbySearchGetSearchResultCountOptions();
-                    uint searchResultCount = search.GetSearchResultCount(ref lobbySearchGetSearchResultCountOptions);
+//                 if (data.ResultCode == Result.Success)
+//                 {
+//                     Debug.Log("Lobbies search finished.");
 
-                    Debug.LogFormat("Lobbies: searchResultCount = {0}", searchResultCount);
+//                     var lobbySearchGetSearchResultCountOptions = new LobbySearchGetSearchResultCountOptions();
+//                     uint searchResultCount = search.GetSearchResultCount(ref lobbySearchGetSearchResultCountOptions);
 
-                    LobbySearchCopySearchResultByIndexOptions indexOptions = new LobbySearchCopySearchResultByIndexOptions();
+//                     Debug.LogFormat("Lobbies: searchResultCount = {0}", searchResultCount);
 
-                    for (uint i = 0; i < searchResultCount; i++)
-                    {
-                        indexOptions.LobbyIndex = i;
+//                     LobbySearchCopySearchResultByIndexOptions indexOptions = new LobbySearchCopySearchResultByIndexOptions();
 
-                        Result result = search.CopySearchResultByIndex(ref indexOptions, out LobbyDetails outLobbyDetails);
+//                     for (uint i = 0; i < searchResultCount; i++)
+//                     {
+//                         indexOptions.LobbyIndex = i;
 
-                        if (result == Result.Success && outLobbyDetails != null)
-                        {
-                            var lobbyDetailsCopyInfoOptions = new LobbyDetailsCopyInfoOptions();
+//                         Result result = search.CopySearchResultByIndex(ref indexOptions, out LobbyDetails outLobbyDetails);
 
-                            Result infoResult = outLobbyDetails.CopyInfo(ref lobbyDetailsCopyInfoOptions, out LobbyDetailsInfo? outLobbyDetailsInfo);
+//                         if (result == Result.Success && outLobbyDetails != null)
+//                         {
+//                             var lobbyDetailsCopyInfoOptions = new LobbyDetailsCopyInfoOptions();
 
-                            if (infoResult != Result.Success)
-                            {
-                                Debug.LogErrorFormat("Lobbies: can't copy lobby info. Error code: {0}", infoResult);
-                                return;
-                            }
+//                             Result infoResult = outLobbyDetails.CopyInfo(ref lobbyDetailsCopyInfoOptions, out LobbyDetailsInfo? outLobbyDetailsInfo);
 
-                            Debug.Log("Lobby = " + outLobbyDetailsInfo.Value.LobbyId);
-                            Debug.Log("Owner = " + outLobbyDetailsInfo.Value.LobbyOwnerUserId);
+//                             if (infoResult != Result.Success)
+//                             {
+//                                 Debug.LogErrorFormat("Lobbies: can't copy lobby info. Error code: {0}", infoResult);
+//                                 return;
+//                             }
 
-                            // get attributes
-                            var attributes = new List<AttributeData?>();
-                            var lobbyDetailsGetAttributeCountOptions = new LobbyDetailsGetAttributeCountOptions();
-                            uint attrCount = outLobbyDetails.GetAttributeCount(ref lobbyDetailsGetAttributeCountOptions);
-                            for (uint j = 0; j < attrCount; j++)
-                            {
-                                LobbyDetailsCopyAttributeByIndexOptions attrOptions = new LobbyDetailsCopyAttributeByIndexOptions();
-                                attrOptions.AttrIndex = j;
-                                Result copyAttrResult = outLobbyDetails.CopyAttributeByIndex(ref attrOptions, out Epic.OnlineServices.Lobby.Attribute? outAttribute);
-                                if (copyAttrResult == Result.Success && outAttribute != null && outAttribute?.Data != null)
-                                {
-                                    attributes.Add(outAttribute.Value.Data);
-                                }
-                            }
+//                             Debug.Log("Lobby = " + outLobbyDetailsInfo.Value.LobbyId);
+//                             Debug.Log("Owner = " + outLobbyDetailsInfo.Value.LobbyOwnerUserId);
 
-                            var lobbyNameAttribute = attributes.FirstOrDefault(x => x != null && x.Value.Key == GameConstants.AttributeKeyLobbyName);
+//                             // get attributes
+//                             var attributes = new List<AttributeData?>();
+//                             var lobbyDetailsGetAttributeCountOptions = new LobbyDetailsGetAttributeCountOptions();
+//                             uint attrCount = outLobbyDetails.GetAttributeCount(ref lobbyDetailsGetAttributeCountOptions);
+//                             for (uint j = 0; j < attrCount; j++)
+//                             {
+//                                 LobbyDetailsCopyAttributeByIndexOptions attrOptions = new LobbyDetailsCopyAttributeByIndexOptions();
+//                                 attrOptions.AttrIndex = j;
+//                                 Result copyAttrResult = outLobbyDetails.CopyAttributeByIndex(ref attrOptions, out Epic.OnlineServices.Lobby.Attribute? outAttribute);
+//                                 if (copyAttrResult == Result.Success && outAttribute != null && outAttribute?.Data != null)
+//                                 {
+//                                     attributes.Add(outAttribute.Value.Data);
+//                                 }
+//                             }
 
-                            string lobbyName;
+//                             var lobbyNameAttribute = attributes.FirstOrDefault(x => x != null && x.Value.Key == GameConstants.AttributeKeyLobbyName);
 
-                            if (lobbyNameAttribute != null)
-                            {
-                                lobbyName = lobbyNameAttribute.Value.Value.AsUtf8;
-                            }
-                            else
-                            {
-                                lobbyName = outLobbyDetailsInfo.Value.LobbyId;
-                            }
+//                             string lobbyName;
 
-                            // there is a brief windows after the host leaves the lobby that it is left open
-                            // we check for this state as the owner will be null and the AvailableSlots will be equal to max slots
-                            if (outLobbyDetailsInfo.Value.LobbyOwnerUserId != null && outLobbyDetailsInfo.Value.AvailableSlots != outLobbyDetailsInfo.Value.MaxMembers)
-                            {
-                                var lobbyItem = lobbies.AddLobby(outLobbyDetails, outLobbyDetailsInfo.Value, lobbyName);
-                                lobbyItem.JoinRequest += LobbyItem_JoinRequest;
-                            }
-                        }
-                    }
+//                             if (lobbyNameAttribute != null)
+//                             {
+//                                 lobbyName = lobbyNameAttribute.Value.Value.AsUtf8;
+//                             }
+//                             else
+//                             {
+//                                 lobbyName = outLobbyDetailsInfo.Value.LobbyId;
+//                             }
 
-                    Debug.Log("Lobbies  (OnLobbySearchCompleted)");
-                }
-            });
-        }
+//                             // there is a brief windows after the host leaves the lobby that it is left open
+//                             // we check for this state as the owner will be null and the AvailableSlots will be equal to max slots
+//                             if (outLobbyDetailsInfo.Value.LobbyOwnerUserId != null && outLobbyDetailsInfo.Value.AvailableSlots != outLobbyDetailsInfo.Value.MaxMembers)
+//                             {
+//                                 var lobbyItem = lobbies.AddLobby(outLobbyDetails, outLobbyDetailsInfo.Value, lobbyName);
+//                                 lobbyItem.JoinRequest += LobbyItem_JoinRequest;
+//                             }
+//                         }
+//                     }
 
-        private void LobbyItem_JoinRequest(string lobbyName, LobbyDetails lobbyDetails, LobbyDetailsInfo lobbyDetailsInfo)
-        {
-            // hide lobbies
-            UIPanelManager.Instance.HidePanel<UIPanelLobbies>(true);
+//                     Debug.Log("Lobbies  (OnLobbySearchCompleted)");
+//                 }
+//             });
+//         }
 
-            // show lobby screen while we connect
-            UIPanelLobby.Instance.LobbyId = lobbyDetailsInfo.LobbyId;
-            UIPanelLobby.Instance.OwnerId = lobbyDetailsInfo.LobbyOwnerUserId.ToString();
-            UIPanelLobby.Instance.LobbyName = lobbyName;
-            UIPanelLobby.Instance.IsHost = false;
-            UIPanelManager.Instance.ShowPanel<UIPanelLobby>();
-        }
+//         private void LobbyItem_JoinRequest(string lobbyName, LobbyDetails lobbyDetails, LobbyDetailsInfo lobbyDetailsInfo)
+//         {
+//             // hide lobbies
+//             UIPanelManager.Instance.HidePanel<UIPanelLobbies>(true);
 
-        protected override void OnShowing()
-        {
-            SetLobbyBusy(false);
-            DoSearch();
-        }
-    }
-}
+//             // show lobby screen while we connect
+//             UIPanelLobby.Instance.LobbyId = lobbyDetailsInfo.LobbyId;
+//             UIPanelLobby.Instance.OwnerId = lobbyDetailsInfo.LobbyOwnerUserId.ToString();
+//             UIPanelLobby.Instance.LobbyName = lobbyName;
+//             UIPanelLobby.Instance.IsHost = false;
+//             UIPanelManager.Instance.ShowPanel<UIPanelLobby>();
+//         }
+
+//         protected override void OnShowing()
+//         {
+//             SetLobbyBusy(false);
+//             DoSearch();
+//         }
+//     }
+// }
