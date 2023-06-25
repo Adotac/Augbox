@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
+namespace Augbox{
 public class Hand : MonoBehaviour
 {
 
     [SerializeField]
-    private Player controlledPlayer;
+    private ControlledPlayer controlledPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,13 +18,13 @@ public class Hand : MonoBehaviour
             
             try
             {
-                Player enemyHealth = other.gameObject.GetComponent<Player>();
+                ControlledPlayer enemyHealth = other.gameObject.GetComponent<ControlledPlayer>();
 
-                if (enemyHealth.Health > 0)
+                if (enemyHealth.getHealth() > 0)
                 {
-                    enemyHealth.Health = enemyHealth.Health - controlledPlayer.Damage;
+                    enemyHealth.TakeDamage(controlledPlayer.damage);
                     //enemyHealth.refBar.UpdateValue();
-                    Debug.Log($"Enemy damaged by -{controlledPlayer.Damage}\nHealth Remaining: {enemyHealth.Health}");
+                    Debug.Log($"Enemy damaged by -{controlledPlayer.damage}\nHealth Remaining: {enemyHealth.getHealth()}");
                 }
 
             }
@@ -43,4 +44,5 @@ public class Hand : MonoBehaviour
 
         
     }
+}
 }

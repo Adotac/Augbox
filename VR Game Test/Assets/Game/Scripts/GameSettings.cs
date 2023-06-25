@@ -12,13 +12,7 @@ namespace Augbox
     {
         private Resolution _currentResolution = new Resolution { width = 1920, height = 1080, refreshRate = 60 };
         private FullScreenMode _currentFullScreenMode = FullScreenMode.FullScreenWindow;
-        private QualityLevel _currentQualityLevel = QualityLevel.High;
-        private float _currentMasterVolume = 1.0f;
-        private float _currentGameVolume = 1.0f;
-        private float _currentMusicVolume = 0.5f;
-        private float _currentVoiceVolume = 1.0f;
         private string _currentPlayerName = "";
-        private string _currentVoiceDeviceName = "";
 
         private string GetPath()
         {
@@ -93,76 +87,6 @@ namespace Augbox
             }
         }
 
-        [JsonProperty]
-        public QualityLevel CurrentQualityLevel
-        {
-            get => _currentQualityLevel;
-            set
-            {
-                if (value != _currentQualityLevel)
-                {
-                    _currentQualityLevel = value;
-                    Save();
-                }
-            }
-        }
-
-
-        [JsonProperty]
-        public float CurrentMasterVolume
-        {
-            get => _currentMasterVolume;
-            set
-            {
-                if (value != _currentMasterVolume)
-                {
-                    _currentMasterVolume = value;
-                    Save();
-                }
-            }
-        }
-
-        [JsonProperty]
-        public float CurrentGameVolume
-        {
-            get => _currentGameVolume;
-            set
-            {
-                if (value != _currentGameVolume)
-                {
-                    _currentGameVolume = value;
-                    Save();
-                }
-            }
-        }
-
-        [JsonProperty]
-        public float CurrentMusicVolume
-        {
-            get => _currentMusicVolume;
-            set
-            {
-                if (value != _currentMusicVolume)
-                {
-                    _currentMusicVolume = value;
-                    Save();
-                }
-            }
-        }
-
-        [JsonProperty]
-        public float CurrentVoiceVolume
-        {
-            get => _currentVoiceVolume;
-            set
-            {
-                if (value != _currentVoiceVolume)
-                {
-                    _currentVoiceVolume = value;
-                    Save();
-                }
-            }
-        }
 
         [JsonProperty]
         public string CurrentPlayerName
@@ -173,20 +97,6 @@ namespace Augbox
                 if (value != _currentPlayerName)
                 {
                     _currentPlayerName = value;
-                    Save();
-                }
-            }
-        }
-
-        [JsonProperty]
-        public string CurrentVoiceDeviceName
-        {
-            get => _currentVoiceDeviceName;
-            set
-            {
-                if (value != _currentVoiceDeviceName)
-                {
-                    _currentVoiceDeviceName = value;
                     Save();
                 }
             }

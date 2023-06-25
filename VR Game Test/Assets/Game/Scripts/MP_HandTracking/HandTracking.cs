@@ -17,9 +17,7 @@ namespace Augbox
         public GameObject LeftHand;
         public GameObject RightHand;
 
-
-
-        private void Start() {
+        protected virtual void Start() {
             HandTrackingSolution handSolutionEvents = GetComponent<HandTrackingSolution>();
             handSolutionEvents.OnHandLandmarkPos += HandSolutionEvents_OnHandLandmarkPos;
         }
@@ -34,13 +32,6 @@ namespace Augbox
                     MoveHand(1, e.handedness[1].Classification[0].Index, e);    
                 }
             }
-            // else if(e.hand_landmark_pos != null && e.handedness[0].Classification[0].Index == 1){
-            //     MoveHand(0, 1, e);
-            //     if(e.hand_landmark_pos.Count > 1 && e.hand_landmark_pos[1] != null){
-            //         MoveHand(1, 0, e);    
-            //     }
-            // }
-
         }
 
         private void MoveHand(int idx, int handIdx, HandTrackingSolution.OnHandLandmarkPosEventArgs e){
@@ -48,17 +39,21 @@ namespace Augbox
             float y1 =  e.hand_landmark_pos[idx].Landmark[5].Y; 
             float x2 = e.hand_landmark_pos[idx].Landmark[17].X;
             float y2 =  e.hand_landmark_pos[idx].Landmark[17].Y; 
+            float ztemp = (MaxPunchDistance - zDepth(CalculateDistance(x1, y1, x2, y2)));
+
+            if(ztemp < 0)
+                ztemp = 0;
 
             switch(handIdx){
                 case 0: 
                     LeftHand.transform.localPosition = new Vector3(e.hand_landmark_pos[idx].Landmark[0].X, 
                                                                 e.hand_landmark_pos[idx].Landmark[0].Y, 
-                                                                -(MaxPunchDistance - zDepth(CalculateDistance(x1, y1, x2, y2))) );
+                                                                ztemp);
                 break;
                 case 1:
                     RightHand.transform.localPosition = new Vector3(e.hand_landmark_pos[idx].Landmark[0].X, 
                                                                 e.hand_landmark_pos[idx].Landmark[0].Y, 
-                                                                -(MaxPunchDistance - zDepth(CalculateDistance(x1, y1, x2, y2))) );
+                                                                ztemp);
                 break;
                 
             }
@@ -71,7 +66,7 @@ namespace Augbox
         }
         private float zDepth(float z){
             float temp1 = 0.1f;
-            float tempwidth = 3;
+            float tempwidth = MaxPunchDistance;
             float focal = (tempwidth * temp1) / 3; // manual cam calibration
             return distanceToCamera(3, focal, z);
         }
