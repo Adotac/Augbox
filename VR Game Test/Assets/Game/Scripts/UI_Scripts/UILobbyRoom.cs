@@ -55,14 +55,9 @@ public class UILobbyRoom : MonoBehaviour
             LobbyManager.Instance.LeaveLobby();
         });
 
-        startGameBtn.onClick.AddListener(() => {
-            try {
-                Lobbies.Instance.UpdateLobbyAsync(LobbyManager.Instance.GetJoinedLobby().Id, new UpdateLobbyOptions { IsLocked = true });
-                NetworkManager.Singleton.SceneManager.LoadScene("Scene_SinglePlayer", LoadSceneMode.Single);
-            }
-            catch (Exception e) {
-                Debug.Log($"Failed closing lobby: {e}");
-            }
+        startGameBtn.onClick.AddListener(async () => {
+            await LobbyManager.LockLobby();
+            NetworkManager.Singleton.SceneManager.LoadScene("Scene_Multi", LoadSceneMode.Single);
         });
 
         // Hide();
@@ -75,11 +70,6 @@ public class UILobbyRoom : MonoBehaviour
         LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
 
-        if(!LobbyManager.Instance.IsLobbyHost())
-            startGameBtn.interactable = false;
-        else
-            startGameBtn.interactable = true;
-
         Hide();
     }
 
@@ -89,7 +79,11 @@ public class UILobbyRoom : MonoBehaviour
     }
 
     private void UpdateLobby_Event(object sender, LobbyManager.LobbyEventArgs e) {
-        print("JOINEDD!!??");
+        if(!LobbyManager.Instance.IsLobbyHost())
+            startGameBtn.interactable = false;
+        else
+            startGameBtn.interactable = true;
+
         UpdateLobby();
     }
 

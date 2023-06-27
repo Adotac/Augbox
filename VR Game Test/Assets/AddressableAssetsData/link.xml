@@ -1,0 +1,103 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Augbox.HandTracking" preserve="all" />
+    <type fullname="Augbox.HandTrackingGraph" preserve="all" />
+    <type fullname="Augbox.HandTrackingSolution" preserve="all" />
+    <type fullname="Mediapipe.Unity.AutoFit" preserve="all" />
+    <type fullname="Mediapipe.Unity.Bootstrap" preserve="all" />
+    <type fullname="Mediapipe.Unity.Screen" preserve="all" />
+    <type fullname="Mediapipe.Unity.StaticImageSource" preserve="all" />
+    <type fullname="Mediapipe.Unity.TextureFramePool" preserve="all" />
+    <type fullname="Mediapipe.Unity.VideoSource" preserve="all" />
+    <type fullname="Mediapipe.Unity.WebCamSource" preserve="all" />
+    <type fullname="VRrig" preserve="all" />
+    <type fullname="Mediapipe.Unity.AutoFit/FitMode" preserve="nothing" serialized="true" />
+    <type fullname="Mediapipe.Unity.Bootstrap/AssetLoaderType" preserve="nothing" serialized="true" />
+    <type fullname="Mediapipe.Unity.ImageSource/ResolutionStruct" preserve="nothing" serialized="true" />
+    <type fullname="Mediapipe.Unity.InferenceMode" preserve="nothing" serialized="true" />
+    <type fullname="Mediapipe.Unity.RunningMode" preserve="nothing" serialized="true" />
+    <type fullname="VRmap" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Mediapipe.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Mediapipe.Unity.ConnectionAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.ConnectionListAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.DetectionAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.DetectionListAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.DetectionListAnnotationController" preserve="all" />
+    <type fullname="Mediapipe.Unity.HandLandmarkListAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.LabelAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.MultiHandLandmarkListAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.MultiHandLandmarkListAnnotationController" preserve="all" />
+    <type fullname="Mediapipe.Unity.NormalizedRectListAnnotationController" preserve="all" />
+    <type fullname="Mediapipe.Unity.PointAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.PointListAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.RectangleAnnotation" preserve="all" />
+    <type fullname="Mediapipe.Unity.RectangleListAnnotation" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.Animation.Rigging, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Animations.Rigging.BoneRenderer" preserve="all" />
+    <type fullname="UnityEngine.Animations.Rigging.MultiParentConstraint" preserve="all" />
+    <type fullname="UnityEngine.Animations.Rigging.Rig" preserve="all" />
+    <type fullname="UnityEngine.Animations.Rigging.RigBuilder" preserve="all" />
+    <type fullname="UnityEngine.Animations.Rigging.TwoBoneIKConstraint" preserve="all" />
+    <type fullname="UnityEngine.Animations.Rigging.MultiParentConstraintData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Animations.Rigging.RigLayer" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Animations.Rigging.TwoBoneIKConstraintData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Animations.Rigging.Vector3Bool" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Animations.Rigging.WeightedTransform" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Animations.Rigging.WeightedTransformArray" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Netcode.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Unity.Netcode.NetworkObject" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Animator" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.LineRenderer" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Mesh" preserve="all" />
+    <type fullname="UnityEngine.MeshFilter" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.MonoBehaviour" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.SkinnedMeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.TextAsset" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.BoxCollider" preserve="all" />
+    <type fullname="UnityEngine.MeshCollider" preserve="all" />
+    <type fullname="UnityEngine.Rigidbody" preserve="all" />
+    <type fullname="UnityEngine.SphereCollider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
+    <type fullname="UnityEngine.UI.Image" preserve="all" />
+    <type fullname="UnityEngine.UI.RawImage" preserve="all" />
+    <type fullname="UnityEngine.UI.Text" preserve="all" />
+    <type fullname="UnityEngine.UI.FontData" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.MaskableGraphic/CullStateChangedEvent" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Canvas" preserve="all" />
+    <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
+  </assembly>
+</linker>

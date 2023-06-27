@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.XR.WSA;
 
 namespace Augbox{
-    public class PlayerEnvironment : MonoBehaviour
+    public class PlayerEnvironment : MonoBehaviourSingletonPersistent<PlayerEnvironment>
     {
         public static BUILD_ENVIRONMENT build_environment;
-        private void Awake() {
+        protected override void Awake() {
             #if HOLOLENS
                 build_environment = BUILD_ENVIRONMENT.HOLOLENS;
             #else

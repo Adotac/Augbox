@@ -1,49 +1,44 @@
-// using FishNet;
-// using System;
-// using System.Collections;
-// using System.Collections.Generic;
-// using System.Linq;
-// using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Unity.Netcode;
+using Cinemachine;
 
-// namespace Augbox
-// {
-//     public class PlayerManager : MonoBehaviourSingletonPersistent<PlayerManager>
-//     {
-//         private List<Player> _players = new List<Player>();
+namespace Augbox
+{
 
-//         // EOS lobby id we are currently in
-//         public string ActiveLobbyId { get; set; } = "Experimental Lobby";
+    public class PlayerManager : MonoBehaviour 
+    {
+        [SerializeField] private GameObject MRToolKit;
+        [SerializeField] private GameObject MRPlaySpace;
+        [SerializeField] private GameObject MRSceneContent;
 
-//         // triggered when ever any changes are done to the players
-//         public event Action PlayersChanged;
+        private Camera cam;
+        private CinemachineBrain cineBrain;
+        private GameObject virtualCamObject;
 
-//         // the player info for the server
-//         public Player ServerPlayer => _players.FirstOrDefault(x => x.IsServer);
+        private void Awake() {
+            if(PlayerEnvironment.build_environment == BUILD_ENVIRONMENT.DESKTOP){
+                MRToolKit.SetActive(false);
+                MRPlaySpace.SetActive(false);
+                MRSceneContent.SetActive(false);
 
-//         // the player info for the active client
-//         public Player ActivePlayer => _players.FirstOrDefault(x => x.IsOwner);
+                // cam = gameObject.AddComponent<Camera>();
+                // cam.tag = "MainCamera";
 
-//         public List<Player> GetPlayers()
-//         {
-//             return _players;
-//         }
+                // virtualCamObject = new GameObject("FollowCamera");
+                // CinemachineVirtualCamera cv = virtualCamObject.AddComponent<CinemachineVirtualCamera>();
 
-//         public void PlayerUpdated(string userId)
-//         {
-//             PlayersChanged?.Invoke();
-//         }
+                // cineBrain = gameObject.AddComponent<CinemachineBrain>();
 
-//         public void AddPlayer(Player info)
-//         {
-//             _players.Add(info);
+                // gameObject.AddComponent<ClientNetwork
+            }
+        }
 
-//             PlayersChanged?.Invoke();
-//         }
+        private void Start() {
 
-//         public void RemovePlayer(string userId)
-//         {
-//             _players.RemoveAll(x => x.UserId == userId);
-//             PlayersChanged?.Invoke();
-//         }
-//     }
-// }
+        }
+    }
+}

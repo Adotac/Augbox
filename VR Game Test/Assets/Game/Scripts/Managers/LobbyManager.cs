@@ -6,7 +6,8 @@ using Unity.Services.Core;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
-
+using System.Threading.Tasks;
+using Unity.Netcode;
 
 public class LobbyManager : MonoBehaviour {
 
@@ -152,7 +153,11 @@ public class LobbyManager : MonoBehaviour {
 
         joinedLobby = lobby;
 
+        NetworkManager.Singleton.StartHost();
+
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
+
+        // Starting the host immediately will keep the relay server alive
 
         Debug.Log("Created Lobby " + lobby.Name);
     }
@@ -192,6 +197,8 @@ public class LobbyManager : MonoBehaviour {
             Player = player
         });
 
+        NetworkManager.Singleton.StartClient();
+
         joinedLobby = lobby;
 
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
@@ -203,6 +210,8 @@ public class LobbyManager : MonoBehaviour {
         joinedLobby = await LobbyService.Instance.JoinLobbyByIdAsync(lobby.Id, new JoinLobbyByIdOptions {
             Player = player
         });
+
+        NetworkManager.Singleton.StartClient();
 
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
     }
@@ -241,6 +250,9 @@ public class LobbyManager : MonoBehaviour {
             Lobby lobby = await LobbyService.Instance.QuickJoinLobbyAsync(options);
             joinedLobby = lobby;
 
+            NetworkManager.Singleton.StartClient();
+
+
             OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
         } catch (LobbyServiceException e) {
             Debug.Log(e);
@@ -253,6 +265,9 @@ public class LobbyManager : MonoBehaviour {
                 await LobbyService.Instance.RemovePlayerAsync(joinedLobby.Id, AuthenticationService.Instance.PlayerId);
 
                 joinedLobby = null;
+
+            NetworkManager.Singleton.Shutdown();
+
 
                 OnLeftLobby?.Invoke(this, EventArgs.Empty);
             } catch (LobbyServiceException e) {
@@ -271,5 +286,12 @@ public class LobbyManager : MonoBehaviour {
         }
     }
 
-
+    public static async Task LockLobby() {
+        try {
+            await Lobbies.Instance.UpdateLobbyAsync(LobbyManager.Instance.GetJoinedLobby().Id, new UpdateLobbyOptions { IsLocked = true });
+        }
+        catch (Exception e) {
+            Debug.Log($"Failed closing lobby: {e}");
+        }
+    }
 }

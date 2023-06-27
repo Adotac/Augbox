@@ -96,7 +96,8 @@ public class UI_PanelMain : MonoBehaviour
 
     public void ShowSettings()
     {
-        UIPanelManager.Instance.ShowPanel<UIPanelMenuSettings>();
+        // UIPanelManager.Instance.ShowPanel<UIPanelMenuSettings>();
+        UIPanelGameSettings.Instance.Show();
     }
 
     public void Exit()
