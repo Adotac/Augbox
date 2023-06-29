@@ -9,7 +9,7 @@ using Cinemachine;
 namespace Augbox
 {
 
-    public class PlayerManager : MonoBehaviour 
+    public class PlayerManager : NetworkBehaviour 
     {
         [SerializeField] private GameObject MRToolKit;
         [SerializeField] private GameObject MRPlaySpace;
@@ -20,6 +20,8 @@ namespace Augbox
         private GameObject virtualCamObject;
 
         private void Awake() {
+            if(!IsOwner)return;
+
             if(PlayerEnvironment.build_environment == BUILD_ENVIRONMENT.DESKTOP){
                 MRToolKit.SetActive(false);
                 MRPlaySpace.SetActive(false);

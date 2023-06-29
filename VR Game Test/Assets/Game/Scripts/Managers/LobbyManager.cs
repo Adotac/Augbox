@@ -154,6 +154,7 @@ public class LobbyManager : MonoBehaviour {
         joinedLobby = lobby;
 
         NetworkManager.Singleton.StartHost();
+        // NetworkManager.Singleton.SceneManager.ActiveSceneSynchronizationEnabled = false;
 
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
 

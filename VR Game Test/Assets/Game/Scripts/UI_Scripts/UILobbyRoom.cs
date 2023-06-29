@@ -57,6 +57,7 @@ public class UILobbyRoom : MonoBehaviour
 
         startGameBtn.onClick.AddListener(async () => {
             await LobbyManager.LockLobby();
+            NetworkManager.Singleton.SceneManager.ActiveSceneSynchronizationEnabled = true;
             NetworkManager.Singleton.SceneManager.LoadScene("Scene_Multi", LoadSceneMode.Single);
         });
 

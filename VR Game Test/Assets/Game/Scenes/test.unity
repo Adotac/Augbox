@@ -420,19 +420,6 @@ MonoBehaviour:
     trackingRotationOffset: {x: 70, y: 0, z: 0}
   headConstraint: {fileID: 1287974413}
   headBodyOffset: {x: 0, y: 0, z: 0}
---- !u!114 &291972611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291972605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a816df75b2cc32547835bba78d6cf8ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  refBar: {fileID: 764698161}
 --- !u!4 &300700563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1775126338366397726, guid: 6d3f9198eab65134c9752cd6798793a0,
@@ -1018,7 +1005,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6d3f9198eab65134c9752cd6798793a0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1017971965920130908, guid: 6d3f9198eab65134c9752cd6798793a0,
         type: 3}
@@ -1198,7 +1185,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8130688995552655207, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
@@ -1218,18 +1205,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1475815431}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &764698161 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114769781544105922, guid: 5eefba205a58c8c4a937c97b87c185a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1475815431}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 149d864443ddca94ba93b092e7acd5ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &773718689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1336,6 +1311,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCV
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233366138074584583, guid: 81718414feff8354a9198710857ebbae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81718414feff8354a9198710857ebbae, type: 3}
@@ -2857,7 +2837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1a3cadf71b9cb4ba829650aae89f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlledPlayer: {fileID: 291972611}
+  controlledPlayer: {fileID: 0}
 --- !u!135 &1393153938
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4228,7 +4208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1a3cadf71b9cb4ba829650aae89f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlledPlayer: {fileID: 291972611}
+  controlledPlayer: {fileID: 0}
 --- !u!54 &1764331818
 Rigidbody:
   m_ObjectHideFlags: 0

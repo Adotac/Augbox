@@ -8,18 +8,24 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Game/Scenes/NetcodeTest.unity
     guid: 0430974f6d6419f439028c7b1afbba35
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Game/Scenes/Build_Scenes/_AwakeSceneManager.unity
+    guid: 25daa5f9c438fab48b220112fe028fce
+  - enabled: 1
     path: Assets/Game/Scenes/Build_Scenes/AR_Menu.unity
     guid: efcbc962095daaf4f896301aa6962bd4
   - enabled: 1
     path: Assets/Game/Scenes/Build_Scenes/Desktop_Menu.unity
     guid: c79b2dda0cbeada4ead0bf6e0acf4f09
-  - enabled: 0
-    path: Assets/Game/Scenes/Build_Scenes/Scene_SinglePlayer.unity
-    guid: 9750b22b2fa472641bf56de0cf2d2bc8
   - enabled: 1
     path: Assets/Game/Scenes/Build_Scenes/Scene_Multi.unity
     guid: c77da5e76a9972c4e9141bc3130d336f
+  - enabled: 1
+    path: Assets/Game/Scenes/Build_Scenes/Scene_SinglePlayer.unity
+    guid: 9750b22b2fa472641bf56de0cf2d2bc8
+  - enabled: 1
+    path: Assets/Game/Scenes/test.unity
+    guid: fb67a56cc6c93e54a94b6fff8aafd9dd
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}

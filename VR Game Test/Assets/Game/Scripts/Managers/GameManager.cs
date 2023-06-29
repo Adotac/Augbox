@@ -7,7 +7,7 @@ namespace Augbox{
 public class GameManager : NetworkBehaviour
 
 {
-    [SerializeField] private ControlledPlayer _playerPrefab;
+    [SerializeField] private ControlledPlayer[] _playerPrefab;
     [SerializeField] private Transform HostSpawn;
     [SerializeField] private Transform ClientSpawn;
 
@@ -18,15 +18,17 @@ public class GameManager : NetworkBehaviour
 
     [ServerRpc(RequireOwnership = false)]
     private void SpawnPlayerServerRpc(ulong playerId) {
+        int environment = (int)PlayerEnvironment.build_environment;
+
         ControlledPlayer spawn = null;
         if(IsHost){
             print("SPAWNING HOST!!!");
-            spawn = Instantiate(_playerPrefab, HostSpawn);
+            spawn = Instantiate(_playerPrefab[environment], HostSpawn);
             // _playerPrefab.GetComponentInChildren<Camera>().gameObject.SetActive(IsOwner);
         }
         else if(IsClient){
             print("SPAWNING CLIENT!!!");
-            spawn = Instantiate(_playerPrefab, ClientSpawn);
+            spawn = Instantiate(_playerPrefab[environment], ClientSpawn);
             // _playerPrefab.GetComponentInChildren<Camera>().gameObject.SetActive(IsOwner);
         }
 

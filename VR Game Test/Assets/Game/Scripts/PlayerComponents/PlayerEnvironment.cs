@@ -10,8 +10,10 @@ namespace Augbox{
         protected override void Awake() {
             #if HOLOLENS
                 build_environment = BUILD_ENVIRONMENT.HOLOLENS;
-            #else
+            #elif DESKTOP
                 build_environment = BUILD_ENVIRONMENT.DESKTOP;
+            #else
+                build_environment = BUILD_ENVIRONMENT.PLAYTEST;
             #endif
 
             print("RUNNING ON ENVIRONMENT: " + build_environment.ToString());
@@ -21,5 +23,6 @@ namespace Augbox{
     public enum BUILD_ENVIRONMENT{
         HOLOLENS,
         DESKTOP,
+        PLAYTEST,
     }
 }

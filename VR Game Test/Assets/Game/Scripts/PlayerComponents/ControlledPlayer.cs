@@ -6,7 +6,7 @@ using Unity.Netcode;
 using Cinemachine;
 
 namespace Augbox{
-[RequireComponent(typeof(Rigidbody))]
+// [RequireComponent(typeof(Rigidbody))]
 public class ControlledPlayer : NetworkBehaviour
 {
     [SerializeField] protected float startingHealth {get;set;} = 100f;

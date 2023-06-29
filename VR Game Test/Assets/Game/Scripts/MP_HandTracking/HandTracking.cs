@@ -8,9 +8,11 @@ using Mediapipe.Unity;
 using Mediapipe.Unity.CoordinateSystem;
 using Stopwatch = System.Diagnostics.Stopwatch;
 
+using Unity.Netcode;
+
 namespace Augbox
 {
-    public class HandTracking : MonoBehaviour
+    public class HandTracking : NetworkBehaviour
     {
         [SerializeField] private float MaxPunchDistance = 5;
 
@@ -18,11 +20,14 @@ namespace Augbox
         public GameObject RightHand;
 
         protected virtual void Start() {
+            if(!IsOwner)return;
             HandTrackingSolution handSolutionEvents = GetComponent<HandTrackingSolution>();
             handSolutionEvents.OnHandLandmarkPos += HandSolutionEvents_OnHandLandmarkPos;
         }
 
         private void HandSolutionEvents_OnHandLandmarkPos(object sender, HandTrackingSolution.OnHandLandmarkPosEventArgs e){
+            if(!IsOwner)return;
+
             // this.hand_landmark_pos = e.hand_landmark_pos;
             // this.handedness = e.handedness;
             print(e.handedness[0].Classification[0].Index); // if 0 its left; if 1 its right
@@ -35,24 +40,40 @@ namespace Augbox
         }
 
         private void MoveHand(int idx, int handIdx, HandTrackingSolution.OnHandLandmarkPosEventArgs e){
+            int trackPoint = 9;
+            float xOffset = 0.5f;
+            float yOffset = -0.5f;
+
             float x1 = e.hand_landmark_pos[idx].Landmark[5].X;
             float y1 =  e.hand_landmark_pos[idx].Landmark[5].Y; 
             float x2 = e.hand_landmark_pos[idx].Landmark[17].X;
             float y2 =  e.hand_landmark_pos[idx].Landmark[17].Y; 
-            float ztemp = (MaxPunchDistance - zDepth(CalculateDistance(x1, y1, x2, y2)));
+
+            float nDistance = CalculateDistance(x1, y1, x2, y2);
+            if(nDistance <= 2){
+                x1 = e.hand_landmark_pos[idx].Landmark[17].X;
+                y1 =  e.hand_landmark_pos[idx].Landmark[17].Y; 
+                x2 = e.hand_landmark_pos[idx].Landmark[18].X;
+                y2 =  e.hand_landmark_pos[idx].Landmark[18].Y; 
+
+                nDistance = CalculateDistance(x1, y1, x2, y2);
+                trackPoint = 17;
+            }
+
+            float ztemp = (MaxPunchDistance - zDepth(nDistance));
 
             if(ztemp < 0)
                 ztemp = 0;
 
             switch(handIdx){
                 case 0: 
-                    LeftHand.transform.localPosition = new Vector3(e.hand_landmark_pos[idx].Landmark[0].X, 
-                                                                e.hand_landmark_pos[idx].Landmark[0].Y, 
+                    LeftHand.transform.localPosition = new Vector3(e.hand_landmark_pos[idx].Landmark[trackPoint].X - xOffset, 
+                                                                -e.hand_landmark_pos[idx].Landmark[trackPoint].Y - yOffset, 
                                                                 ztemp);
                 break;
                 case 1:
-                    RightHand.transform.localPosition = new Vector3(e.hand_landmark_pos[idx].Landmark[0].X, 
-                                                                e.hand_landmark_pos[idx].Landmark[0].Y, 
+                    RightHand.transform.localPosition = new Vector3(e.hand_landmark_pos[idx].Landmark[trackPoint].X - xOffset, 
+                                                                -e.hand_landmark_pos[idx].Landmark[trackPoint].Y - yOffset, 
                                                                 ztemp);
                 break;
                 

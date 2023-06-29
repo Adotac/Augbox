@@ -178,6 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 589259549}
   - component: {fileID: 589259550}
+  - component: {fileID: 589259551}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -215,6 +216,25 @@ MonoBehaviour:
   MRToolKit: {fileID: 218425148}
   MRPlaySpace: {fileID: 1630210483}
   MRSceneContent: {fileID: 745782195}
+--- !u!114 &589259551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589259548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2355756965
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &743479114
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +695,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 553.2125, y: 548.45734, z: 82.84247}
   m_Center: {x: 0, y: 2.3775103, z: 41.421314}
+--- !u!64 &1759017899
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759017894}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5060444177187149915, guid: 020552b4cbc78ce45973f16bc80da1b7, type: 3}
 --- !u!1001 &1870942780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -902,8 +936,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c11749007926a541897c6fe663a9be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 5156633513514660683, guid: 48d20f225e85b2349b409c53b575dbe1,
-    type: 3}
+  _playerPrefab:
+  - {fileID: -2276321789041080363, guid: a842c925a8aa3ff42874650e5c35e20a, type: 3}
+  - {fileID: 8233366138074584577, guid: 81718414feff8354a9198710857ebbae, type: 3}
+  - {fileID: 5156633513514660683, guid: 48d20f225e85b2349b409c53b575dbe1, type: 3}
   HostSpawn: {fileID: 743479115}
   ClientSpawn: {fileID: 1745825330}
 --- !u!1 &2033837361
